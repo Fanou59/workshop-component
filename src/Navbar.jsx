@@ -4,7 +4,10 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 
-const uniqueCategories = [...new Set(REACT_CARDS.map((card) => card.category))];
+const uniqueCategories = [
+  "All",
+  ...new Set(REACT_CARDS.map((card) => card.category)),
+];
 
 export const Navbar = () => {
   return (
