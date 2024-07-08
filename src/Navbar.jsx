@@ -1,4 +1,5 @@
 import { REACT_CARDS } from "./ReactCards";
+import Link from "next/link";
 
 const uniqueCategories = [...new Set(REACT_CARDS.map((card) => card.category))];
 
@@ -14,13 +15,13 @@ const CategoryLinks = () => {
   return (
     <>
       {uniqueCategories.map((category) => (
-        <a
+        <Link
           className="rounded-md px-2 py-1 capitalize transition-colors hover:bg-gray-200"
-          href="#"
+          href={{ query: { filter: category === "All" ? "" : category } }}
           key={category}
         >
           {category}
-        </a>
+        </Link>
       ))}
     </>
   );

@@ -1,5 +1,9 @@
 export const REACT_CARDS = [
   {
+    name: "All",
+    category: "All",
+  },
+  {
     name: "JSX",
     category: "components",
     url: "https://react.dev/learn/writing-markup-with-jsx",
