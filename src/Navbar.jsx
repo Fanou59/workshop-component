@@ -3,6 +3,7 @@ import { REACT_CARDS } from "./ReactCards";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
+import { Suspense } from "react";
 
 const uniqueCategories = [
   "All",
@@ -12,7 +13,9 @@ const uniqueCategories = [
 export const Navbar = () => {
   return (
     <nav className="flex w-full flex-wrap gap-4 lg:max-w-[200px] lg:flex-col">
-      <CategoryLinks />
+      <Suspense fallback={<div>Loading...</div>}>
+        <CategoryLinks />
+      </Suspense>
     </nav>
   );
 };
