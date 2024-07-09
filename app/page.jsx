@@ -4,6 +4,7 @@ import { Card } from "@/src/Card";
 import { Header } from "@/src/Header";
 import { Navbar } from "@/src/Navbar";
 import { REACT_CARDS } from "@/src/ReactCards";
+import { Suspense } from "react";
 
 export default function Home() {
   const searchParams = useSearchParams();
@@ -21,15 +22,17 @@ export default function Home() {
         <Navbar />
         <div className="size-full overflow-auto">
           <div className="grid h-fit w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {filteredCards.map((card, index) => (
-              <Card
-                key={index}
-                name={card.name}
-                category={card.category}
-                url={card.url}
-                showCategory={filter === ""}
-              />
-            ))}
+            <Suspense fallback={<div>Loading...</div>}>
+              {filteredCards.map((card, index) => (
+                <Card
+                  key={index}
+                  name={card.name}
+                  category={card.category}
+                  url={card.url}
+                  showCategory={filter === ""}
+                />
+              ))}
+            </Suspense>
           </div>
         </div>
       </div>
