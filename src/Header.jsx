@@ -1,4 +1,4 @@
-import { ShoppingBasket, User, Plus } from "lucide-react";
+import { ShoppingBasket, User } from "lucide-react";
 import { ReactSvg } from "./ReactSvg";
 import { Button } from "./Button";
 
