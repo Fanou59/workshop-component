@@ -1,45 +1,41 @@
 "use client";
 import { REACT_CARDS } from "./ReactCards";
-import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 import { Suspense } from "react";
 
-const uniqueCategories = [
-  "All",
-  ...new Set(REACT_CARDS.map((card) => card.category)),
-];
-
-export const Navbar = () => {
+export const Navbar = ({filters, currentFilter}) => {
   return (
     <nav className="flex w-full flex-wrap gap-4 lg:max-w-[200px] lg:flex-col">
-      <Suspense fallback={<div>Loading...</div>}>
-        <CategoryLinks />
-      </Suspense>
+      <CategoryLinks isActivefilter={!currentFilter} filter="" key="filter">
+        All
+        </CategoryLinks>
+      {filters.map((filter) => (
+        <CategoryLinks isActive={filter === currentFilter} filter = {filter} key={filter} >
+        {filter}
+        </CategoryLinks>
+      ))}
+      
     </nav>
   );
 };
 
-const CategoryLinks = () => {
-  const searchParams = useSearchParams();
-  const activeFilter = searchParams.get("filter") || "";
+const CategoryLinks = ({filter, children, isActive}) => {
   return (
     <>
-      {uniqueCategories.map((category) => (
         <Link
           className={clsx(
             "rounded-md px-2 py-1 capitalize transition-colors hover:bg-gray-200",
             {
               "font-bold":
-                activeFilter === (category === "All" ? "" : category),
+                isActive,
             }
           )}
-          href={{ query: { filter: category === "All" ? "" : category } }}
-          key={category}
+          href={`/?filter=${filter}`}
+          key={filter}
         >
-          {category}
+          {children}
         </Link>
-      ))}
     </>
   );
 };
