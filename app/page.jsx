@@ -1,10 +1,8 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 import { Card } from "@/src/Card";
 import { Header } from "@/src/Header";
 import { Navbar } from "@/src/Navbar";
 import { REACT_CARDS } from "@/src/ReactCards";
-import { Suspense } from "react";
 
 export default function Home({searchParams}) {
   const currentFilter = searchParams.filter
