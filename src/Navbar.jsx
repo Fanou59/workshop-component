@@ -1,8 +1,6 @@
 "use client";
-import { REACT_CARDS } from "./ReactCards";
 import Link from "next/link";
 import clsx from "clsx";
-import { Suspense } from "react";
 
 export const Navbar = ({filters, currentFilter}) => {
   return (
